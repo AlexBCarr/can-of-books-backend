@@ -8,7 +8,7 @@ mongoose.connect(process.env.DB_URL);
 const Book = require('./models/book.js');
 
 async function seed() {
-  
+
 
   await Book.create({
     Title: 'The 48 Laws of Power',
