@@ -75,6 +75,25 @@ async function deleteBook(request,response,next){
   }
 }
 
+// **** ENDPOINT TO UPDATE BOOK *****
+
+app.put('/book/:bookID', updateBook);
+
+async function updateBook(request, response, next){
+  try {
+
+    let id = request.params.bookID;
+    let data = request.body;
+
+    const updatedBook = await Book.findByIdAndUpdate(id, data, { new: true, overwrite: true});
+
+    response.status(200).send(updatedBook);
+
+  } catch (error) {
+    next(error);
+  }
+}
+
 // **** ENDPOINT TO ADD A BOOK *****
 
 app.post('/book', postBook);
